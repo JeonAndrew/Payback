@@ -14,8 +14,13 @@ int User::getUserId() {
 
 void User::addFriend(User* f) {
     friends[f->getUserId()] = f;
+    f->friends[user_id] = this;
+
     balances[f->getUserId()] = 0;
+    f->balances[user_id] = 0; 
+    
     transactions[f->getUserId()] = std::vector<std::pair<int, std::string>>();
+    f->transactions[user_id] = std::vector<std::pair<int, std::string>>();
 }
 
 void User::makeTransaction(int id, int amount, std::string memo) {
